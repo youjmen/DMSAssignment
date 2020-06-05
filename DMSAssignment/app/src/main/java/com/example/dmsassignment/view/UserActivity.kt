@@ -104,6 +104,11 @@ class UserActivity : FragmentActivity() {
                     text_followers.text = response.body()?.followers.toString() + " followers"
 
                     text_following.text = response.body()?.following.toString() + " following"
+
+                    text_bio.text = response.body()?.bio
+                    text_company.text = response.body()?.company
+                    text_email.text = response.body()?.email
+                    text_location.text ="지역"+ response.body()?.location
                     repositories_count.text = response.body()?.publicRepos.toString()
 
                     followers_count.text = response.body()?.followers.toString()
@@ -126,6 +131,7 @@ class UserActivity : FragmentActivity() {
 
         })
     }
+
 
 
 
