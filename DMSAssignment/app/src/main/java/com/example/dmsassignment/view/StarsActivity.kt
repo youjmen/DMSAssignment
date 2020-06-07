@@ -26,7 +26,7 @@ class StarsActivity : AppCompatActivity() {
         val starsAdapter= StarsAdapter(this,list)
         stars_recyclerview.layoutManager= LinearLayoutManager(this)
         stars_recyclerview.adapter=starsAdapter
-        val call = GithubApi().service.getUserStarsInfo(intent.getStringExtra("username")!!.toString())
+        val call = GithubApi().service.getUserStarsInfo(intent.getStringExtra("id")!!.toString())
         call.enqueue(object : Callback<List<StarsInfo>> {
             override fun onFailure(call: Call<List<StarsInfo>>, t: Throwable) {
                 t.printStackTrace()
@@ -38,8 +38,6 @@ class StarsActivity : AppCompatActivity() {
                 response: Response<List<StarsInfo>>
             ) {
                 if(response.code()==200){
-                    Log.d("ads","성공")
-                    Log.d("객체", response.body()!!.size.toString())
                     for( i in response.body()!!.size-1 downTo 0){
                         list.add(response.body()!![i])
                     }
@@ -47,7 +45,7 @@ class StarsActivity : AppCompatActivity() {
 
                 }
                 else{
-                    Log.d("asdf","이상함")
+                    Log.d("failed : ",response.code().toString())
                 }
 
             }

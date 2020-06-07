@@ -13,21 +13,21 @@ class UtilClass {
 
 
 
-        fun getUsername(context: Context): String {
+        fun getId(context: Context): String {
             pref = context.getSharedPreferences("DMSAssignment", MODE_PRIVATE)
-            return pref?.getString("username", "default")!!
+            return pref?.getString("id", "default")!!
         }
 
-        fun saveUsername(context: Context, username: String) {
+        fun saveId(context: Context, username: String) {
             pref = context.getSharedPreferences("DMSAssignment", MODE_PRIVATE)
             val editor: SharedPreferences.Editor = pref!!.edit()
-            editor.putString("username", username)
+            editor.putString("id", username)
             editor.apply()
         }
-        fun changeUsername(context: Context, username: String) {
+        fun changeId(context: Context, username: String) {
             pref = context.getSharedPreferences("DMSAssignment", MODE_PRIVATE)
             val editor: SharedPreferences.Editor = pref!!.edit()
-            editor.putString("username", username)
+            editor.putString("id", username)
             editor.apply()
         }
     }

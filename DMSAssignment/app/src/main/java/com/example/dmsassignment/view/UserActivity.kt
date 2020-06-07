@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.dmsassignment.GithubApi
 import com.example.dmsassignment.R
@@ -30,22 +31,23 @@ class UserActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
-        val username = intent.getStringExtra("username") ?: UtilClass.getUsername(applicationContext)
+        val username = intent.getStringExtra("id") ?: UtilClass.getId(applicationContext)
 
 
         val call = GithubApi().service.getUserInfo(username)
+
         loadInfo(call)
 
         text_repositories_list.setOnClickListener {
             val repoIntent = Intent(this, RepositoryActivity::class.java)
-            repoIntent.putExtra("username",UtilClass.getUsername(applicationContext))
+            repoIntent.putExtra("id",UtilClass.getId(applicationContext))
             startActivity(repoIntent)
 
         }
 
         text_stars_list.setOnClickListener {
             val starsIntent = Intent(this, StarsActivity::class.java)
-            starsIntent.putExtra("username",UtilClass.getUsername(applicationContext))
+            starsIntent.putExtra("id",UtilClass.getId(applicationContext))
 
             startActivity(starsIntent)
 
@@ -53,7 +55,7 @@ class UserActivity : FragmentActivity() {
 
         text_followers_list.setOnClickListener {
             val followersIntent = Intent(this, FollowersActivity::class.java)
-            followersIntent.putExtra("username",UtilClass.getUsername(applicationContext))
+            followersIntent.putExtra("id",UtilClass.getId(applicationContext))
 
             startActivity(followersIntent)
 
@@ -62,7 +64,7 @@ class UserActivity : FragmentActivity() {
 
         text_following_list.setOnClickListener {
             val followingIntent = Intent(this, FollowingActivity::class.java)
-            followingIntent.putExtra("username",UtilClass.getUsername(applicationContext))
+            followingIntent.putExtra("id",UtilClass.getId(applicationContext))
 
             startActivity(followingIntent)
 
@@ -117,6 +119,7 @@ class UserActivity : FragmentActivity() {
                     Glide.with(this@UserActivity)
                         .load(response.body()?.avatar_url.toString())
                         .into(profile_image)
+                    Log.d("call complete?","maybe")
 
 
 

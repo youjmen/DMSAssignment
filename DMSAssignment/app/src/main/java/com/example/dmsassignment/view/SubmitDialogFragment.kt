@@ -23,12 +23,12 @@ class SubmitDialogFragment(var userId : String) : DialogFragment() {
             // Use the Builder class for convenient dialog construction
 
             val builder = AlertDialog.Builder(it)
-            builder.setTitle("제출 확인").setMessage("이 유저 이름이 맞습니까?")
+            builder.setTitle("제출 확인").setMessage("이 ID가 맞습니까?")
                 .setPositiveButton(R.string.dialog_yes,
                     DialogInterface.OnClickListener { dialog, id ->
                         val intent = Intent(requireActivity(),UserActivity::class.java)
-                        UtilClass.saveUsername(requireActivity().applicationContext,userId)
-                        intent.putExtra("username", editText.text.toString())
+                        UtilClass.saveId(requireActivity().applicationContext,userId)
+                        intent.putExtra("username", userId)
                         startActivity(intent)
                         requireActivity().finish()
                         toast("등록 완료")

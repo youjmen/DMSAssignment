@@ -19,21 +19,21 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        checkUsername()
+        checkId()
 
 
         button.setOnClickListener {
             if(editText.text==null)
-                toast("유저 이름을 입력하세요")
+                toast("GitHUB ID를 입력하세요")
             else
             showSubmitDialog(editText.text.toString())
 
         }
     }
-    fun checkUsername(){
-       if(UtilClass.getUsername(applicationContext)!="default"){
+    fun checkId(){
+       if(UtilClass.getId(applicationContext)!="default"){
            val intent= Intent(this,UserActivity::class.java)
-           Log.d("username",UtilClass.getUsername(applicationContext))
+           Log.d("username",UtilClass.getId(applicationContext))
            startActivity(intent)
            finish()
        }

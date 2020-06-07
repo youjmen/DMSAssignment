@@ -40,6 +40,10 @@ class StarsAdapter(private val context : Context, private val list: List<StarsIn
             view.starred_repositories_language.text=item.language
             view.starred_repositories_stargazers_count.text=item.stargazers_count.toString()
 
+            Glide.with(context)
+                .load(item.owner.avatar_url)
+                .into(view.starred_owner_profile_image)
+
 
         }
     }

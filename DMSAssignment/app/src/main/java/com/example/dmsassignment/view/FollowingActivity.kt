@@ -26,7 +26,7 @@ class FollowingActivity : AppCompatActivity() {
         val followingAdapter= FollowingAdapter(this,list)
         following_recyclerview.layoutManager= LinearLayoutManager(this)
         following_recyclerview.adapter=followingAdapter
-        val call = GithubApi().service.getUserFollowingInfo(intent.getStringExtra("username")!!.toString())
+        val call = GithubApi().service.getUserFollowingInfo(intent.getStringExtra("id")!!.toString())
         call.enqueue(object : Callback<List<FollowingInfo>> {
             override fun onFailure(call: Call<List<FollowingInfo>>, t: Throwable) {
                 t.printStackTrace()
@@ -37,8 +37,6 @@ class FollowingActivity : AppCompatActivity() {
                 response: Response<List<FollowingInfo>>
             ) {
                 if(response.code()==200){
-                    Log.d("ads","성공")
-                    Log.d("객체", response.body()!!.size.toString())
                     for( i in response.body()!!.size-1 downTo 0){
                         list.add(response.body()!![i])
                     }

@@ -6,18 +6,18 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface GithubService {
-    @GET("users/{username}")
-    fun getUserInfo(@Path("username") username : String) : Call<UserInfo>
+    @GET("users/{user_id}")
+    fun getUserInfo(@Path("user_id") username : String) : Call<UserInfo>
 
-    @GET("users/{username}/repos")
-    fun getUserRepoInfo(@Path("username") username : String) : Call<List<RepositoryInfo>>
+    @GET("users/{user_id}/repos")
+    fun getUserRepoInfo(@Path("user_id") username : String) : Call<List<RepositoryInfo>>
 
-    @GET("users/{username}/starred")
-    fun getUserStarsInfo(@Path("username") username : String) : Call<List<StarsInfo>>
+    @GET("users/{user_id}/starred")
+    fun getUserStarsInfo(@Path("user_id") username : String) : Call<List<StarsInfo>>
 
-    @GET("users/{username}/followers")
-    fun getUserFollowersInfo(@Path("username") username : String) : Call<List<FollowersInfo>>
+    @GET("users/{user_id}/followers")
+    fun getUserFollowersInfo(@Path("user_id") username : String) : Call<List<FollowersInfo>>
 
-    @GET("users/{username}/following")
-    fun getUserFollowingInfo(@Path("username") username : String) : Call<List<FollowingInfo>>
+    @GET("users/{user_id}/following")
+    fun getUserFollowingInfo(@Path("user_id") username : String) : Call<List<FollowingInfo>>
 }

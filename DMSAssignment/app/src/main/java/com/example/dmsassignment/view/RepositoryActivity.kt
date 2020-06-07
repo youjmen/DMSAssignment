@@ -27,7 +27,7 @@ class RepositoryActivity : AppCompatActivity() {
         val repositoryAdapter= RepositoryAdapter(this,list)
         repositories_recyclerview.layoutManager=LinearLayoutManager(this)
         repositories_recyclerview.adapter=repositoryAdapter
-        val call = GithubApi().service.getUserRepoInfo(intent.getStringExtra("username")!!.toString())
+        val call = GithubApi().service.getUserRepoInfo(intent.getStringExtra("id")!!.toString())
         call.enqueue(object : Callback<List<RepositoryInfo>> {
             override fun onFailure(call: Call<List<RepositoryInfo>>, t: Throwable) {
                 t.printStackTrace()
@@ -38,8 +38,6 @@ class RepositoryActivity : AppCompatActivity() {
                 response: Response<List<RepositoryInfo>>
             ) {
                 if(response.code()==200){
-                    Log.d("ads","성공")
-                    Log.d("객체", response.body()!!.size.toString())
                     for( i in response.body()!!.size-1 downTo 0){
                         list.add(response.body()!![i])
                     }
