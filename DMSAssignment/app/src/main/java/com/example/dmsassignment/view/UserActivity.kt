@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_user.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -92,13 +94,13 @@ class UserActivity : FragmentActivity() {
         call.enqueue(object : Callback<UserInfo> {
             override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                 t.printStackTrace()
-                Log.d("ㅇㅁ","ㅂㅁㅇㄻ")
+
 
             }
 
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
                 if(response.code()==200){
-                    Log.d("성공","ㅋ")
+                    Log.d("성공","success")
 
                     text_name.text = response.body()?.name ?: ""
                     text_id.text = response.body()?.id
@@ -119,7 +121,7 @@ class UserActivity : FragmentActivity() {
                     Glide.with(this@UserActivity)
                         .load(response.body()?.avatar_url.toString())
                         .into(profile_image)
-                    Log.d("call complete?","maybe")
+
 
 
 
@@ -127,12 +129,14 @@ class UserActivity : FragmentActivity() {
 
                 }
                 else{
-                    Log.d("ㅁㅇㄹ",response.code().toString())
+                    Log.d("failled :",response.code().toString())
                 }
 
             }
 
         })
+
+
     }
 
 
