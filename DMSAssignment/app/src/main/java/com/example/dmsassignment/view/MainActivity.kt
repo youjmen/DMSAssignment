@@ -22,11 +22,11 @@ class MainActivity : FragmentActivity() {
         checkId()
 
 
-        button.setOnClickListener {
-            if(editText.text==null)
+        confirm_button.setOnClickListener {
+            if(input_id_editText.text==null)
                 toast("GitHUB ID를 입력하세요")
             else
-            showSubmitDialog(editText.text.toString())
+            showSubmitDialog(input_id_editText.text.toString())
 
         }
     }
