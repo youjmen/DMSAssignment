@@ -10,7 +10,8 @@ import androidx.fragment.app.FragmentActivity
 import com.example.dmsassignment.R
 import com.example.dmsassignment.UtilClass
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.internal.Util
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import splitties.toast.toast
 
 class MainActivity : FragmentActivity() {
@@ -44,5 +45,6 @@ class MainActivity : FragmentActivity() {
         dialog.show(supportFragmentManager, "SubmitDialogFragment")
 
         }
+
 
 }

@@ -29,11 +29,11 @@ class ChangeUsernameDialogFragment : DialogFragment() {
 
 
                     })
-                .setNegativeButton(R.string.dialog_no,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        getDialog()!!.cancel()
+                .setNegativeButton(R.string.dialog_no
+                ) { dialog, id ->
+                    getDialog()!!.cancel()
 
-                    })
+                }
             // Create the AlertDialog object and return it
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")

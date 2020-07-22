@@ -12,6 +12,7 @@ import com.example.dmsassignment.data.FollowingInfo
 import com.example.dmsassignment.data.RepositoryInfo
 import kotlinx.android.synthetic.main.activity_following.*
 import kotlinx.android.synthetic.main.activity_repository.*
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +28,7 @@ class FollowingActivity : AppCompatActivity() {
         following_recyclerview.layoutManager= LinearLayoutManager(this)
         following_recyclerview.adapter=followingAdapter
         val call = GithubApi().service.getUserFollowingInfo(intent.getStringExtra("id")!!.toString())
+
         call.enqueue(object : Callback<List<FollowingInfo>> {
             override fun onFailure(call: Call<List<FollowingInfo>>, t: Throwable) {
                 t.printStackTrace()
@@ -35,7 +37,8 @@ class FollowingActivity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<List<FollowingInfo>>,
                 response: Response<List<FollowingInfo>>
-            ) {
+            )
+            {
                 if(response.code()==200){
                     for( i in response.body()!!.size-1 downTo 0){
                         list.add(response.body()!![i])
@@ -48,4 +51,5 @@ class FollowingActivity : AppCompatActivity() {
 
         })
     }
+
 }
